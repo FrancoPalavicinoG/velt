@@ -26,7 +26,7 @@ htmlcov/
 instance/            # Flask instance folder (config, uploads)
 *.log
 *.pid
-*.sqlite3            # If you drop quick local DB files
+# *.sqlite3            # If you drop quick local DB files
 
 # ── Environment & secrets ────────────────────────────────
 .env
@@ -34,8 +34,8 @@ instance/            # Flask instance folder (config, uploads)
 !.env.example        # keep the sample template
 
 # ── Databases & dumps ────────────────────────────────────
-*.sql
-*.sql.gz
+# *.sql
+# *.sql.gz
 
 # ── Editors / IDEs ───────────────────────────────────────
 .vscode/
