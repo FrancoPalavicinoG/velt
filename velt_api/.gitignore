@@ -1,0 +1,56 @@
+# ── Python ───────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual-envs
+venv/
+.venv/
+.Python
+
+# Distribution / packaging
+build/
+dist/
+.eggs/
+*.egg-info/
+*.egg
+
+# Unit-test / coverage
+.tox/
+.nox/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ── Flask runtime ────────────────────────────────────────
+instance/            # Flask instance folder (config, uploads)
+*.log
+*.pid
+*.sqlite3            # If you drop quick local DB files
+
+# ── Environment & secrets ────────────────────────────────
+.env
+.env.*
+!.env.example        # keep the sample template
+
+# ── Databases & dumps ────────────────────────────────────
+*.sql
+*.sql.gz
+
+# ── Editors / IDEs ───────────────────────────────────────
+.vscode/
+.idea/
+*.code-workspace
+*.sublime-*
+*.sw?
+
+# ── OS artifacts ─────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── Docker overrides (local-only) ────────────────────────
+docker-compose.override.yml
+
+# ── Misc temp files ──────────────────────────────────────
+*~
+*.bak
