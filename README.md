@@ -33,3 +33,16 @@
    source app/db/migrations/v1_init.sql;
    USE velt_db;
    ```
+
+## API Documentation
+** 1. AUTH **
+- POST register: http://127.0.0.1:5001/api/v1/auth/register
+   ```bash
+       {
+      "email": "f@example.com",
+      "password": "Passw0rd!",
+      "username": "franco"
+    }
+   ```
+- POST login: http://127.0.0.1:5001/api/v1/auth/login
+- POST refresh: http://127.0.0.1:5001/api/v1/auth/refresh
