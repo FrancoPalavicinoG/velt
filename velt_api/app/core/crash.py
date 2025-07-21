@@ -19,9 +19,9 @@ class Crash:
     device_id: int 
     session_id: int | None 
     ts: datetime
-    severity: CrashSeverity = CrashSeverity.HIGH
     latitude: float | None
     longitude: float | None
+    severity: CrashSeverity = CrashSeverity.HIGH
     confirmed: CrashConfirmation = CrashConfirmation.AUTO
 
 

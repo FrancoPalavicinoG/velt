@@ -9,4 +9,5 @@ class User:
     username: str | None = None
     locale: str = "en" 
     units: str = "metric"
+    created_at: datetime | None = None
     last_login_at: datetime | None = None

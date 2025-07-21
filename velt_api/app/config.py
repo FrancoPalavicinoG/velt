@@ -7,7 +7,7 @@ class Config:
     DB_HOST = os.getenv("DB_HOST", "localhost")
     DB_USER = os.getenv("DB_USER", "root")
     DB_PASS = os.getenv("DB_PASS", "")
-    DB_NAME = os.getenv("DB_NAME", "sga_db")
+    DB_NAME = os.getenv("DB_NAME", "velt_db")
 
     JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY", "change-me")
     JWT_ACCESS_TOKEN_EXPIRES  = timedelta(minutes=15)
