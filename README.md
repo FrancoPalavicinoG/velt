@@ -50,10 +50,10 @@
 ### 2. Devices API  
 #### `/api/v1/devices/{}`
 
-| Name        | Method | Path            | Uso (qué hace)                                                   |
-|-------------|--------|-----------------|------------------------------------------------------------------|
-| **Create**  | POST   | `/devices`      | Emparejar un sensor nuevo → devuelve JSON del dispositivo creado |
-| **List**    | GET    | `/devices`      | Listar **todos** mis dispositivos                                |
-| **Get one** | GET    | `/devices/{id}` | Obtener datos detallados de un dispositivo específico            |
-| **Update**  | PATCH  | `/devices/{id}` | Cambiar alias o estado (`online` \| `offline`)                   |
-| **Delete**  | DELETE | `/devices/{id}` | Des-vincular (eliminar) el sensor de la cuenta                   |
+| Name          | Method | Path            | Uso                                                              |
+|---------------|--------|-----------------|------------------------------------------------------------------|
+|  **Create**   | POST   | `/devices`      | Emparejar un sensor nuevo → devuelve JSON del dispositivo creado |
+|  **List**     | GET    | `/devices`      | Listar **todos** mis dispositivos                                |
+|  **Get one**  | GET    | `/devices/{id}` | Obtener datos detallados de un dispositivo específico            |
+|  **Update**   | PATCH  | `/devices/{id}` | Cambiar alias o estado (`online` \| `offline`)                   |
+|  **Delete**   | DELETE | `/devices/{id}` | Des-vincular (eliminar) el sensor de la cuenta                   |
