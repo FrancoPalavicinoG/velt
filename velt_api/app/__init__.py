@@ -1,4 +1,4 @@
-from flask import Flask                       
+from flask import Flask, Blueprint                    
 from .config import Config                       
 from .extensions import jwt, cors, limiter       
 from app.db import bp_db                         # blueprint técnico: cierra conexión MySQL
@@ -14,12 +14,19 @@ def create_app() -> Flask:
     limiter.init_app(app)                       # rate-limiting por IP / por endpoint
 
     # Añade el teardown que cierra g.db al final de cada request.
-    app.register_blueprint(bp_db)               
+    app.register_blueprint(bp_db)    
+
+    api_bp = Blueprint("api", __name__, url_prefix="/api/v1")
+           
 
     # 5) --------------- BLUEPRINTS DE RUTAS ---------------------
     from app.routes.auth import bp as auth_bp    
+    from app.routes.devices import bp as devices_bp
     # Rutas /auth/login, /auth/register, etc. vivirán bajo /api/v1/…
-    app.register_blueprint(auth_bp, url_prefix="/api/v1")
+    api_bp.register_blueprint(auth_bp)
+    api_bp.register_blueprint(devices_bp)
+
+    app.register_blueprint(api_bp)
 
     # 6) --------------- HEALTHCHECK ----------------------------------------
     # Endpoint sencillo para probes de liveness/ready.

@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from enum import Enum
+from datetime import datetime
 
 class DeviceStatus(str, Enum):
     ONBOARDING = "onboarding"
@@ -12,6 +13,7 @@ class Device:
     user_id: int
     hardware_id: str 
     alias: str | None
-    version: str | None
+    version: str | None = "0.0.1"
     status: DeviceStatus = DeviceStatus.ONBOARDING
     battery_level: int | None = None
+    created_at: datetime | None = None
