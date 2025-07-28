@@ -79,3 +79,12 @@
 | Name      | Method | Path         | Uso                                                               |
 |-----------|--------|--------------|-------------------------------------------------------------------|
 | **Ingest**| POST   | `/telemetries` | Enviar lote de muestras (acelerómetro, giroscopio, etc.)   |
+
+---
+
+### 5. Crashes API  
+#### `/api/v1/crashes/{}`
+
+| Name        | Method | Path        | Uso                                                   |
+|-------------|--------|-------------|-------------------------------------------------------|
+| **List**    | GET    | `/crashes`  | Listar choques detectados para todos mis dispositivos |
