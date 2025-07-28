@@ -22,9 +22,11 @@ def create_app() -> Flask:
     # 5) --------------- BLUEPRINTS DE RUTAS ---------------------
     from app.routes.auth import bp as auth_bp    
     from app.routes.devices import bp as devices_bp
+    from app.routes.sessions import bp as sessions_bp
     # Rutas /auth/login, /auth/register, etc. vivirán bajo /api/v1/…
     api_bp.register_blueprint(auth_bp)
     api_bp.register_blueprint(devices_bp)
+    api_bp.register_blueprint(sessions_bp)
 
     app.register_blueprint(api_bp)
 

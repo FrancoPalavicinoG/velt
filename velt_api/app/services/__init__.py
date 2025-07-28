@@ -1,6 +1,7 @@
-from .exceptions import WeakPassword, DuplicateEmail, InvalidCredentials, DeviceNotFound, OwnershipError
+from .exceptions import WeakPassword, DuplicateEmail, InvalidCredentials, DeviceNotFound, SessionNotFound, OwnershipError, SessionAlreadyClosed, InvalidTimeRange
 
 __all__ = [
     "WeakPassword", "DuplicateEmail", "InvalidCredentials",
-    "DeviceNotFound", "OwnershipError"
+    "DeviceNotFound", "SessionNotFound","OwnershipError",
+    "SessionAlreadyClosed", "InvalidTimeRange"
 ]

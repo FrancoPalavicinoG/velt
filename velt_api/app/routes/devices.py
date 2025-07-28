@@ -47,7 +47,7 @@ def update_device(device_id):
             alias=data["alias"],
             status=data["status"]
         )
-        return device.__dict__
+        return device.__dict__, 200
     except device_service.DeviceNotFound:
         return {"error": "device not found"}, 404
     except device_service.OwnershipError:

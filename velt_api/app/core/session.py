@@ -7,3 +7,4 @@ class Session:
     user_id: int 
     start_time: datetime
     end_time: datetime | None = None
+    created_at: datetime | None = None
