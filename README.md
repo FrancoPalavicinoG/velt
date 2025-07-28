@@ -57,3 +57,16 @@
 |  **Get one**  | GET    | `/devices/{id}` | Obtener datos detallados de un dispositivo específico            |
 |  **Update**   | PATCH  | `/devices/{id}` | Cambiar alias o estado (`online` \| `offline`)                   |
 |  **Delete**   | DELETE | `/devices/{id}` | Des-vincular (eliminar) el sensor de la cuenta                   |
+
+---
+
+### 3. Sessions API  
+#### `/api/v1/sessions/{}`
+
+| Name        | Method | Path              | Uso                                                                 |
+|-------------|--------|-------------------|---------------------------------------------------------------------|
+| **Start**   | POST   | `/sessions`       | Comenzar una nueva sesión → devuelve JSON de la sesión iniciada     |
+| **List**    | GET    | `/sessions`       | Listar **todas** mis sesiones                                       |
+| **Get one** | GET    | `/sessions/{id}`  | Obtener los datos de una sesión específica                          |
+| **Stop**    | PATCH  | `/sessions/{id}`  | Finalizar sesión → setea `end_time`                                 |
+| **Delete**  | DELETE | `/sessions/{id}`  | Eliminar el registro de la sesión                                   |
