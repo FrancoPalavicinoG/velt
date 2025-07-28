@@ -74,8 +74,8 @@
 ---
 
 ### 4. Telemetry API  
-#### `/api/v1/telemetry`
+#### `/api/v1/telemetries`
 
 | Name      | Method | Path         | Uso                                                               |
 |-----------|--------|--------------|-------------------------------------------------------------------|
-| **Ingest**| POST   | `/telemetry` | Enviar lote de muestras (acelerómetro, giroscopio, etc.)   |
+| **Ingest**| POST   | `/telemetries` | Enviar lote de muestras (acelerómetro, giroscopio, etc.)   |
