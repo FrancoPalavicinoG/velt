@@ -70,3 +70,12 @@
 | **Get one** | GET    | `/sessions/{id}`  | Obtener los datos de una sesión específica                          |
 | **Stop**    | PATCH  | `/sessions/{id}`  | Finalizar sesión → setea `end_time`                                 |
 | **Delete**  | DELETE | `/sessions/{id}`  | Eliminar el registro de la sesión                                   |
+
+---
+
+### 4. Telemetry API  
+#### `/api/v1/telemetry`
+
+| Name      | Method | Path         | Uso                                                               |
+|-----------|--------|--------------|-------------------------------------------------------------------|
+| **Ingest**| POST   | `/telemetry` | Enviar lote de muestras (acelerómetro, giroscopio, etc.)   |
