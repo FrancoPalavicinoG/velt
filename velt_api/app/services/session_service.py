@@ -11,7 +11,7 @@ def _require_owner(user_id: int, session_id: int) -> Session:
         raise OwnershipError
     return session
 
-def create_session(user_id: int) -> Session: 
+def start_session(user_id: int) -> Session: 
     now = datetime.now(timezone.utc)
     session = Session(
         id=None,

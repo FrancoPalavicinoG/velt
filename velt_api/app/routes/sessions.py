@@ -7,9 +7,9 @@ bp = Blueprint("session", __name__)
 
 @bp.post("/sessions")
 @jwt_required()
-def create_session():
+def start_session():
     uid = get_jwt_identity()
-    session = session_service.create_session(
+    session = session_service.start_session(
         user_id=uid
     )
     return session.__dict__, 201
