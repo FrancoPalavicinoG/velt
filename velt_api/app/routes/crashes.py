@@ -4,10 +4,10 @@ from app.services import crash_service
 
 bp = Blueprint("crashes", __name__)
 
-@bp.post("/crashes")
-@jwt_required
+@bp.get("/crashes")
+@jwt_required()
 def list_crashes():
-    uid = get_jwt_identity
+    uid = get_jwt_identity()
     crashes = crash_service.list_crashes(uid)
     return [crash.__dict__ for crash in crashes], 200
 
