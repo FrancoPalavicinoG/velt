@@ -3,7 +3,7 @@ import {
     saveTokens,            
     updateAccessToken,     
     clearTokens 
-} from '@/app/auth/token';
+} from '@/app/auth/tokens';
 
 /** Endpoints del API backend */
 AUTH_ROUTES = {

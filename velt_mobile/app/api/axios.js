@@ -5,7 +5,7 @@ import {
     getAccessToken,
     updateAcccessToken,
     clearTokens
-} from '@/app/auth/token';
+} from '@/app/auth/tokens';
 
 import { refresh } from './auth'
 
@@ -31,6 +31,12 @@ api.interceptors.response.use(
     async error => {
         const { response, config } = error;
 
+        /** Si el refresh falla, no intenta otra vez */
+        if (config.url === AUTH_ROUTES.REFRESH) {
+            await clearTokens();
+            return Promise.reject(error);
+        }
+
         /** Si el servidor devuelve 401 significa "token inválido o expirado".
             Implementamos refresh automático SOLO una vez por petición. */
         if (response?.status === 401 && !config._retry) {
@@ -51,7 +57,7 @@ api.interceptors.response.use(
                 await clearTokens();
             }
         }
-        /** Si NO es 401 o ya re-intentamos y sigue fallando, reenviamos  */
+        /** Si NO es 401 o ya re-intentamos y sigue fallando, reenviamos */
         throw error;
     } 
 );
