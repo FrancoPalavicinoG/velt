@@ -9,7 +9,7 @@ import React, {
 // Wrappers HTTP que envían peticiones a tu backend
 import {
     login as apiLogin,
-    signup as apiSignup,
+    register as apiSignup,
     logout as apiLogout,
 } from '@/app/api/auth';
 
@@ -45,13 +45,21 @@ export function AuthProvider({ children }) {
     }, []);
 
     const login = useCallback(async (credentials) => {
-        await apiLogin(credentials);
-        setUser({});
+        try {
+            await apiLogin(credentials);
+            setUser({});
+        } catch (err) {
+            throw err;
+        }
     }, []);
 
     const signup = useCallback(async (credentials) => {
-        await apiSignup(credentials);
-        setUser({});
+        try { 
+            await apiSignup(credentials);
+            setUser({});
+        } catch (err) {
+            throw err;
+        }
     }, []);
 
     const logout = useCallback(async () => {

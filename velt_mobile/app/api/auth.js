@@ -5,6 +5,28 @@ import {
     clearTokens 
 } from '@/app/auth/tokens';
 
+function authError(err) {
+    if (err.response?.status === 401) {
+        const msg = err.response.data?.error ?? 'invalid credentials';
+        const e = new Error(msg);
+        e.code = 'INVALID_CREDENTIALS';
+        throw e;
+    }
+    if (err.response?.status === 409) {
+        const msg = err.response?.data?.error
+        if (msg === 'password too weak') {
+            const e = new Error(err.response.data?.error ?? 'password too weak');
+            e.code  = 'PASSWORD_WEAK';
+            throw e;
+        } else {
+            const e = new Error(err.response.data?.error ?? 'email already exists');
+            e.code  = 'EMAIL_EXISTS';
+            throw e;
+        }
+    }
+    throw err;
+}
+
 /** Endpoints del API backend */
 AUTH_ROUTES = {
     REGISTER: '/auth/register',
@@ -16,18 +38,26 @@ AUTH_ROUTES = {
     Registra un nuevo usuario y almacena los JWT en SecureStore.
 */
 export async function register(payload) {
-    const { data } = await api.post(AUTH_ROUTES.REGISTER, payload);
-    await saveTokens({ access: data.access , refresh: data.refresh });
-    return data.user;
+    try {
+        const { data } = await api.post(AUTH_ROUTES.REGISTER, payload);
+        await saveTokens({ access: data.access , refresh: data.refresh });
+        return data.user;
+    } catch (err) {
+        authError(err);
+    } 
 }
 
 /** 2. login : POST /auth/login 
     Inicia sesión y guarda access + refresh tokens.
 */
 export async function login(credentials) {
-    const { data } = await api.post(AUTH_ROUTES.LOGIN, credentials);
-    await saveTokens({ access: data.access , refresh: data.refresh });
-    return data.user;
+    try {
+        const { data } = await api.post(AUTH_ROUTES.LOGIN, credentials);
+        await saveTokens({ access: data.access , refresh: data.refresh });
+        return data.user;
+    } catch (err) {
+        authError(err);
+    } 
 }
 
 /** 3. refresh : POST /auth/refresh 
