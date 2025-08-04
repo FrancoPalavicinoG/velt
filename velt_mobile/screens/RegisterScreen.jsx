@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, TextInput, Text, Button, ActivityIndicator } from 'react-native';
+import { View } from 'react-native';
+import { TextInput, Button, HelperText, ActivityIndicator, Text } from 'react-native-paper';
 import { useAuth } from '@/app/auth/AuthProvider';
 
 export default function RegisterScreen({ navigation }) {
@@ -36,41 +37,54 @@ export default function RegisterScreen({ navigation }) {
     };
 
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24 }}>
+            <Text variant='headlineMedium' style={{ marginBottom: 12}} > VELT </Text>
             <TextInput
-                placeholder='email'
+                placeholder='Email'
                 value={email}
                 onChangeText={setEmail}
-                autoCapitalize='none'
                 keyboardType='email-address'
-                style={{ borderWidth:1, marginBottom:10, padding:8 }}
+                autoCapitalize='none'
+                mode="outlined"
+                style={{ marginBottom: 12, width: '85%' }}
             />
             <TextInput
-                placeholder='password'
+                placeholder='Password'
                 value={password}
                 onChangeText={setPassword}
                 secureTextEntry
-                style={{ borderWidth:1, marginBottom:20, padding:8 }}
+                mode="outlined"
+                style={{ marginBottom: 12, width: '85%' }}
             />
             <TextInput
-                placeholder='username'
+                placeholder='Username'
                 value={username}
                 onChangeText={setUsername}
                 autoCapitalize='none'
-                style={{ borderWidth:1, marginBottom:10, padding:8 }}
+                mode="outlined"
+                style={{ marginBottom: 4, width: '85%' }}
             />
-
-            {loading
-              ? <ActivityIndicator size="large" style={{ marginBottom: 12 }} />
-              : <Button title="Signup" onPress={handleSignup} />
-            }
-
+            <HelperText type="error" visible={!!error} style={{ width: '85%' }}>
+                {error}
+            </HelperText>
+            {loading ? (
+                <ActivityIndicator animating size="large" style={{ marginBottom: 12 }} />
+            ) : (
+                <Button
+                    mode="contained"
+                    onPress={handleSignup}
+                    style={{ width: '85%', marginTop: 12 }}
+                >
+                    Sign up
+                </Button>
+            )}
             <Button
-                title='Have an account? Login'
+                mode="text"
                 onPress={() => navigation.navigate('Login')}
-            />
-
-            {error && <Text style={{ color: 'red' }}>{error}</Text>}
+                style={{ marginTop: 8 }}
+            >
+                Have an account? Login
+            </Button>
         </View>
     );
 }
