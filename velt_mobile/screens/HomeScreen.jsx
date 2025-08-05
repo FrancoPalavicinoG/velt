@@ -5,7 +5,7 @@ import { useAuth } from '@/app/auth/AuthProvider';
 import useDevices from '@/hooks/useDevices';
 
 
-export default function HomeScreen() {
+export default function HomeScreen({ navigation }) {
 
     /* Logout: lo provee AuthProvider. */
     const { logout } = useAuth();
@@ -60,6 +60,13 @@ export default function HomeScreen() {
                 />
                 </>
             )}
+
+            <Button
+                mode="contained"
+                onPress={() => navigation.navigate('PairDevice')}
+            >
+                Add new device
+            </Button>
 
             <Button
                 mode="outlined"
