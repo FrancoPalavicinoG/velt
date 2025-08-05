@@ -45,7 +45,7 @@ export async function getRefreshToken() {
 }
 
 /** Sustituye SOLO el access-token tras un refresh exitoso. */
-export async function updateAcccessToken(newToken) {
+export async function updateAccessToken(newToken) {
     await _set(TOKEN_KEY, newToken);
 }
 

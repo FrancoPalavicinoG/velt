@@ -3,11 +3,12 @@ import axios from 'axios';
 import { API_BASE, REQUEST_TIME } from '@/app/config'; 
 import {
     getAccessToken,
-    updateAcccessToken,
+    updateAccessToken,
     clearTokens
 } from '@/app/auth/tokens';
 
-import { refresh } from './auth'
+import { refresh, logout, AUTH_ROUTES } from './auth'
+
 
 /** Instancia Axios base. */
 const api = axios.create({
@@ -47,7 +48,7 @@ api.interceptors.response.use(
                 const newAccess = await refresh();
                 /** Si la llamada es exitosa, guardamos el nuevo token */
                 if (newAccess) {
-                    await updateAcccessToken(newAccess);
+                    await updateAccessToken(newAccess);
                     /** Reintentamos la peticion origanl con el nuevo token */
                     config.headers.Authorization = `Bearer ${newAccess}`;
                     return api(config);
@@ -55,6 +56,7 @@ api.interceptors.response.use(
             } catch (refreshErr) {
                 /** Si el refresh falla limpiamos tokens*/
                 await clearTokens();
+                logout();
             }
         }
         /** Si NO es 401 o ya re-intentamos y sigue fallando, reenviamos */

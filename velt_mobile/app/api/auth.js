@@ -28,7 +28,7 @@ function authError(err) {
 }
 
 /** Endpoints del API backend */
-AUTH_ROUTES = {
+export const AUTH_ROUTES = {
     REGISTER: '/auth/register',
     LOGIN:    '/auth/login',
     REFRESH:  '/auth/refresh'
@@ -40,7 +40,7 @@ AUTH_ROUTES = {
 export async function register(payload) {
     try {
         const { data } = await api.post(AUTH_ROUTES.REGISTER, payload);
-        await saveTokens({ access: data.access , refresh: data.refresh });
+        await saveTokens({ access: data.access_token, refresh: data.refresh_token });
         return data.user;
     } catch (err) {
         authError(err);
@@ -53,7 +53,7 @@ export async function register(payload) {
 export async function login(credentials) {
     try {
         const { data } = await api.post(AUTH_ROUTES.LOGIN, credentials);
-        await saveTokens({ access: data.access , refresh: data.refresh });
+        await saveTokens({ access: data.access_token , refresh: data.refresh_token });
         return data.user;
     } catch (err) {
         authError(err);
@@ -66,9 +66,9 @@ export async function login(credentials) {
 export async function refresh() {
     try{
         const { data } = await api.post(AUTH_ROUTES.REFRESH);
-        if (data?.access) {
-            await updateAccessToken(data.access);
-            return data.access;
+        if (data?.access_token) {
+            await updateAccessToken(data.access_token);
+            return data.access_token;
         }
         return null;   
     } catch(err){
@@ -80,4 +80,3 @@ export async function refresh() {
 export async function logout() {
     await clearTokens();
 }
-
