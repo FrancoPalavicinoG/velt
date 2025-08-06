@@ -15,7 +15,12 @@ export default function HomeScreen({ navigation }) {
 
     /* Render helpers. */
     const renderItem = ({ item }) => (
-        <Card style={{ marginBottom: 8 }}>
+        <Card 
+            style={{ marginBottom: 8 }}
+            onPress={() => 
+                navigation.navigate('DeviceDetail', { id: item.id })
+            }
+        >
             <Card.Title
                 title={item.alias}
                 subtitle={`Status: ${item.status}`}
