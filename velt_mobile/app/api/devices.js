@@ -1,4 +1,3 @@
-import { RotateOutUpLeft } from 'react-native-reanimated';
 import api from './axios'
 
 const DEVICE_ROUTES = {
@@ -6,7 +5,7 @@ const DEVICE_ROUTES = {
     LIST : '/devices',
     GET_ONE: (id) => `/devices/${id}`,
     UPDATE : (id) => `/devices/${id}`,
-    DELETE : (id) => `/devices/${id}`,
+    DELETE : (id) => `/devices/${id}`, // Para despues.
 };
 
 /** Crea un device, para emparejar un sensor. */

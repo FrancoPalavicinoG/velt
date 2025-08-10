@@ -29,7 +29,7 @@ export default function useDevice(id) {
     patchDevice(updates)
     updates es un objeto parcial ej. { alias: 'New name' }
     Aplica Optimistic UI:
-    1. Guarda snapshot (currentState)
+    1. Guarda snapshot (prev)
     2. setDevice(optimistic) → UI instantánea
     3. Llama a la API
     4a. Ok: setDevice(respuesta real)
@@ -39,7 +39,7 @@ export default function useDevice(id) {
         if (!device) {
             return null;
         }
-        const currentState = device;
+        const prev = device;
         const optimistic = { ...device, ...updates };
         setDevice(optimistic);
         setSaving(true);
@@ -47,8 +47,8 @@ export default function useDevice(id) {
         try {
             const d = await deviceApi.update(id, updates);
             setDevice(d);
-        } catch (err){
-            setDevice(currentState);
+        } catch(err) {
+            setDevice(prev);
             throw err;
         } finally {
             setSaving(false);
