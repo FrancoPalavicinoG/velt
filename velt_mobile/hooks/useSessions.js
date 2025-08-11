@@ -7,19 +7,13 @@ export default function useSessions() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const toView = useCallback((s) => ({
-        ...s,
-        start_time: DateTime.fromISO(s.start_time).toLocal(),
-        end_time:   s.end_time ? DateTime.fromISO(s.end_time).toLocal() : null,
-    }), []);
-
     const fetchSessions = useCallback(async () => {
         setLoading(true);
         setError(null);
 
         try {
             const s = await sessionApi.list();
-            setSessions(toView(s));
+            setSessions(s);
         } catch(err) {
             console.warn('[useSessions] list error →', err);
             setError(err);

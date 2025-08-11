@@ -28,8 +28,8 @@ export default function SessionDetail({ route, navigation }) {
             <Card style={{ marginTop: 12 }}>
                 <Card.Content>
                 <Title>Status: {isActive ? 'Active' : 'Closed'}</Title>
-                <Paragraph>Start: {session.start_time.toFormat('ff')}</Paragraph>
-                <Paragraph>End:   {session.end_time ? session.end_time.toFormat('ff') : '—'}</Paragraph>
+                <Paragraph>Start: {session.start_time}</Paragraph>
+                <Paragraph>End:   {session.end_time ? session.end_time : '—'}</Paragraph>
                 </Card.Content>
             </Card>
         
