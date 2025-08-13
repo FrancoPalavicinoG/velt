@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { View } from 'react-native';
-import { TextInput, Button, HelperText } from 'react-native-paper';
+import { Appbar, TextInput, Button, HelperText } from 'react-native-paper';
 import usePairDevice from "@/hooks/usePairDevice";
+import Screen from '@/components/Screen';
 
 export default function PairDeviceScreen({ navigation }) {
     const [alias, setAlias] = useState('');
@@ -22,7 +23,13 @@ export default function PairDeviceScreen({ navigation }) {
 
     /* UI */
     return (
-        <View style={{ padding: 16 }}>
+        <View style={{ flex: 1 }}>
+            <Appbar.Header mode="small">
+                <Appbar.BackAction onPress={() => navigation.goBack()} />
+                <Appbar.Content title={`Pair Device`} />
+            </Appbar.Header>
+
+        <Screen withBottomBar>
             <TextInput
                 label="Helmet alias"
                 value={alias}
@@ -48,6 +55,7 @@ export default function PairDeviceScreen({ navigation }) {
             >
                 Pair sensor
             </Button>
+        </Screen>
         </View>
     );
 }

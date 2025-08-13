@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import { Appbar, Card, Title, Paragraph, Button, ActivityIndicator, Text } from 'react-native-paper';
 import useDevice from '@/hooks/useDevice';
 import useStartSession from '@/hooks/useStartSession';
+import Screen from '@/components/Screen';
 
 export default function DeviceDetailScreen({ route, navigation }) {
     const { id } = route.params;
@@ -48,7 +49,7 @@ export default function DeviceDetailScreen({ route, navigation }) {
                 <Appbar.Action icon="refresh" onPress={refetch} />
             </Appbar.Header>
 
-        <View style={{ padding: 16 }}>
+        <Screen withBottomBar>
             <Card>
                 <Card.Content>
                     <Title>{device.alias}</Title>
@@ -71,7 +72,7 @@ export default function DeviceDetailScreen({ route, navigation }) {
 
             {error && <Text style={{ color: 'red', marginTop: 12 }}>Failed to load device.</Text>}
             {startError && <Text style={{ color: 'red', marginTop: 4 }}>Could not start session.</Text>}
-        </View>
+        </Screen>
         </View>
     );
 }

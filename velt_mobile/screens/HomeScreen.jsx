@@ -1,8 +1,10 @@
 import React from 'react';
 import { View, FlatList } from 'react-native';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Text, Card, ActivityIndicator, Button } from 'react-native-paper';
 import { useAuth } from '@/app/auth/AuthProvider';
 import useDevices from '@/hooks/useDevices';
+import Screen from '@/components/Screen';
 
 
 export default function HomeScreen({ navigation }) {
@@ -30,15 +32,15 @@ export default function HomeScreen({ navigation }) {
 
     /* UI */
     return (
-        <View style={{ flex: 1, padding: 16 }}>
+        <Screen withBottomBar>
             <Text variant="headlineMedium" style={{ marginBottom: 12 }}>
                 Welcome back!
             </Text>
-
+        
             {loading && (
                 <ActivityIndicator animating size="large" style={{ marginTop: 32 }} />
             )}
-
+        
             {error && (
                 <>
                 <Text style={{ color: 'red', marginBottom: 8 }}>
@@ -49,14 +51,13 @@ export default function HomeScreen({ navigation }) {
                 </Button>
                 </>
             )}
-
-            {/* Normal state --------------------------------------------------------- */}
+        
             {!loading && !error && (
                 <>
                 <Text variant="titleMedium" style={{ marginBottom: 8 }}>
                     You have {devices.length} paired device(s)
                 </Text>
-
+        
                 <FlatList
                     data={devices}
                     keyExtractor={d => `${d.id}`}
@@ -65,21 +66,14 @@ export default function HomeScreen({ navigation }) {
                 />
                 </>
             )}
-
-            <Button
-                mode="contained"
-                onPress={() => navigation.navigate('PairDevice')}
-            >
+        
+            <Button mode="contained" onPress={() => navigation.navigate('PairDevice')}>
                 Add new device
             </Button>
-
-            <Button
-                mode="outlined"
-                style={{ marginTop: 'auto' }}
-                onPress={logout}
-            >
+        
+            <Button mode="outlined" style={{ marginTop: 'auto' }} onPress={logout}>
                 Log out
             </Button>
-        </View>
+        </Screen>
     );
 }

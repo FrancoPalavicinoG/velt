@@ -2,6 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { Appbar, Card, Title, Paragraph, Button, ActivityIndicator } from 'react-native-paper';
 import useSession from '@/hooks/useSession';
+import Screen from '@/components/Screen';
 
 export default function SessionDetail({ route, navigation }) {
     const { id } = route.params;
@@ -18,13 +19,13 @@ export default function SessionDetail({ route, navigation }) {
     const isActive = !session.end_time;
 
     return (
-        <View style={{ flex: 1, padding: 16 }}>
+        <View style={{ flex: 1 }}>
             <Appbar.Header mode="small">
                 <Appbar.BackAction onPress={() => navigation.goBack()} />
                 <Appbar.Content title={`Session #${id}`} />
                 <Appbar.Action icon="refresh" onPress={refetch} />
             </Appbar.Header>
-        
+        <Screen withBottomBar>
             <Card style={{ marginTop: 12 }}>
                 <Card.Content>
                 <Title>Status: {isActive ? 'Active' : 'Closed'}</Title>
@@ -40,6 +41,7 @@ export default function SessionDetail({ route, navigation }) {
             )}
         
             {error && <Paragraph style={{ color: 'red', marginTop: 8 }}>Error loading or stopping session.</Paragraph>}
+        </Screen>
         </View>
     );
 }
