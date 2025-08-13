@@ -5,6 +5,7 @@ import { Text, Card, ActivityIndicator, Button } from 'react-native-paper';
 import { useAuth } from '@/app/auth/AuthProvider';
 import useDevices from '@/hooks/useDevices';
 import Screen from '@/components/Screen';
+import FlatCarousel from '@/components/FlatCarousel';
 
 
 export default function HomeScreen({ navigation }) {
@@ -58,7 +59,7 @@ export default function HomeScreen({ navigation }) {
                     You have {devices.length} paired device(s)
                 </Text>
         
-                <FlatList
+                <FlatCarousel
                     data={devices}
                     keyExtractor={d => `${d.id}`}
                     renderItem={renderItem}
